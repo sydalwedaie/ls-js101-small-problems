@@ -2,11 +2,13 @@
 
 const rlSync = require("readline-sync");
 
-let inputInt = rlSync.question("Please enter an integer greater than 0: ");
+let input = rlSync.question(
+  "Please enter an array of integers greater than 0: "
+);
 
-while (!Number.isInteger(Number(inputInt))) {
-  inputInt = rlSync.question("Please enter an integer greater than 0: ");
-}
+input = Array.from(input)
+  .filter(item => Number.isInteger(Number(item)))
+  .map(int => parseInt(int));
 
 let inputOp = rlSync.question(
   'Enter "s" to compute the sum, or "p" to compute the product: '
@@ -18,32 +20,20 @@ while (!["s", "p"].includes(inputOp)) {
   );
 }
 
-function calcSum(num) {
-  let output = 0;
-  for (let i = 0; i <= num; i++) {
-    output += i;
-  }
-  return output;
+function calcSum(arr) {
+  return arr.reduce((a, b) => a + b, 0);
 }
 
-function calcProduct(num) {
-  let output = 1;
-  for (let i = 1; i <= num; i++) {
-    output *= i;
-  }
-  return output;
+function calcProduct(arr) {
+  return arr.reduce((a, b) => a * b, 1);
 }
 
 if (inputOp === "s") {
   console.log(
-    `The sum of the integers between 1 and ${inputInt} is ${calcSum(
-      Number(inputInt)
-    )}.`
+    `The sum of the integers ${input.toString()} is ${calcSum(input)}.`
   );
 } else if (inputOp === "p") {
   console.log(
-    `The product of the integers between 1 and ${inputInt} is ${calcProduct(
-      Number(inputInt)
-    )}.`
+    `The product of the integers ${input.toString()} is ${calcProduct(input)}.`
   );
 }
