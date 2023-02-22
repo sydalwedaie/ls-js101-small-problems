@@ -1,10 +1,13 @@
-function logInBox(str) {
-  let boxLength = str.length + 2;
-  console.log("+" + "-".repeat(boxLength) + "+");
-  console.log("|" + " ".repeat(boxLength) + "|");
-  console.log("| " + str + " |");
-  console.log("|" + " ".repeat(boxLength) + "|");
-  console.log("+" + "-".repeat(boxLength) + "+");
+function logInBox(message) {
+  let horizontalLine = `+${"-".repeat(message.length + 2)}+`;
+  let messageLine = `| ${message} |`;
+  let emptyLine = `|${" ".repeat(message.length + 2)}|`;
+
+  console.log(horizontalLine);
+  console.log(emptyLine);
+  console.log(messageLine);
+  console.log(emptyLine);
+  console.log(horizontalLine);
 }
 
 logInBox("To boldly go where no one has gone before.");
